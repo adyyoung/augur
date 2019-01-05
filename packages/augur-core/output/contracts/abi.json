@@ -5169,8 +5169,8 @@
 					"type": "address"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		}
 	],
@@ -9332,8 +9332,8 @@
 					"type": "address"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -10001,8 +10001,8 @@
 					"type": "address"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -10297,8 +10297,8 @@
 					"type": "address"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -11327,8 +11327,8 @@
 					"type": "bytes32"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{

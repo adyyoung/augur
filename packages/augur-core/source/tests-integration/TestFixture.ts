@@ -75,7 +75,7 @@ export class TestFixture {
 
     public async approveCentralAuthority(): Promise<void> {
         const authority = this.contractDeployer.getContract('Augur');
-        const cash = new Cash(this.connector, this.accountManager, this.contractDeployer.getContract('Cash').address, TestFixture.GAS_PRICE);
+        const cash = new Cash(this.connector, this.accountManager, this.cash.address, TestFixture.GAS_PRICE);
         await cash.approve(authority.address, new BN(2).pow(new BN(256)).sub(new BN(1)));
     }
 
@@ -83,11 +83,13 @@ export class TestFixture {
         const marketCreationFee = await universe.getOrCacheMarketCreationCost_();
 
         console.log("Creating Market");
-        const marketAddress = await universe.createCategoricalMarket_(endTime, feePerEthInWei, designatedReporter, outcomes, stringTo32ByteHex(" "), 'description', '', { attachedEth: marketCreationFee });
+        const cash = new Cash(this.connector, this.accountManager, this.cash.address, TestFixture.GAS_PRICE);
+        await cash.depositEther({attachedEth: marketCreationFee});
+        const marketAddress = await universe.createCategoricalMarket_(endTime, feePerEthInWei, designatedReporter, outcomes, stringTo32ByteHex(" "), 'description', '');
         if (!marketAddress || marketAddress == "0x") {
             throw new Error("Unable to get address for new categorical market.");
         }
-        await universe.createCategoricalMarket(endTime, feePerEthInWei, designatedReporter, outcomes, stringTo32ByteHex(" "), 'description', '', { attachedEth: marketCreationFee });
+        await universe.createCategoricalMarket(endTime, feePerEthInWei, designatedReporter, outcomes, stringTo32ByteHex(" "), 'description', '');
         const market = new Market(this.connector, this.accountManager, marketAddress, TestFixture.GAS_PRICE);
         if (await market.getTypeName_() !== stringTo32ByteHex("Market")) {
             throw new Error("Unable to create new categorical market");
@@ -108,7 +110,9 @@ export class TestFixture {
 
         const ethValue = numShares.mul(price);
 
-        await createOrder.publicCreateOrder(type, numShares, price, market, outcome, betterOrderID, worseOrderID, tradeGroupID, false, { attachedEth: ethValue });
+        const cash = new Cash(this.connector, this.accountManager, this.cash.address, TestFixture.GAS_PRICE);
+        await cash.depositEther({attachedEth: ethValue});
+        await createOrder.publicCreateOrder(type, numShares, price, market, outcome, betterOrderID, worseOrderID, tradeGroupID, false);
         return;
     }
 
@@ -183,7 +187,9 @@ export class TestFixture {
         const numTicks = await market.getNumTicks_();
         const ethValue = amount.mul(numTicks);
 
-        await completeSets.publicBuyCompleteSets(market.address, amount, { attachedEth: ethValue });
+        const cash = new Cash(this.connector, this.accountManager, this.cash.address, TestFixture.GAS_PRICE);
+        await cash.depositEther({ attachedEth: ethValue });
+        await completeSets.publicBuyCompleteSets(market.address, amount);
         return;
     }
 
