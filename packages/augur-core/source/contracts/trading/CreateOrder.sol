@@ -38,7 +38,7 @@ contract CreateOrder is Initializable, ReentrancyGuard {
         return Order.saveOrder(_orderData, _tradeGroupId);
     }
 
-    function publicCreateOrders(uint256[] _outcomes, Order.Types[] _types, uint256[] _attoshareAmounts, uint256[] _prices, IMarket _market, bool _ignoreShares, bytes32 _tradeGroupId) public afterInitialized nonReentrant convertToAndFromCash payable returns (bytes32[] memory _orders) {
+    function publicCreateOrders(uint256[] _outcomes, Order.Types[] _types, uint256[] _attoshareAmounts, uint256[] _prices, IMarket _market, bool _ignoreShares, bytes32 _tradeGroupId) public afterInitialized nonReentrant payable returns (bytes32[] memory _orders) {
         require(augur.isValidMarket(_market));
         _orders = new bytes32[]( _types.length);
 
