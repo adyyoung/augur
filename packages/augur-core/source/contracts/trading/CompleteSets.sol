@@ -29,7 +29,7 @@ contract CompleteSets is Initializable, ReentrancyGuard, ICompleteSets {
     /**
      * Buys `_amount` shares of every outcome in the specified market.
     **/
-    function publicBuyCompleteSets(IMarket _market, uint256 _amount) external payable afterInitialized returns (bool) {
+    function publicBuyCompleteSets(IMarket _market, uint256 _amount) external afterInitialized returns (bool) {
         this.buyCompleteSets(msg.sender, _market, _amount);
         augur.logCompleteSetsPurchased(_market.getUniverse(), _market, msg.sender, _amount);
         _market.assertBalances();

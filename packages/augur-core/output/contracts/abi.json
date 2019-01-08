@@ -5071,35 +5071,6 @@
 			"type": "function"
 		}
 	],
-	"MailboxFactory": [
-		{
-			"constant": false,
-			"inputs": [
-				{
-					"name": "_augur",
-					"type": "address"
-				},
-				{
-					"name": "_owner",
-					"type": "address"
-				},
-				{
-					"name": "_market",
-					"type": "address"
-				}
-			],
-			"name": "createMailbox",
-			"outputs": [
-				{
-					"name": "",
-					"type": "address"
-				}
-			],
-			"payable": false,
-			"stateMutability": "nonpayable",
-			"type": "function"
-		}
-	],
 	"MapFactory": [
 		{
 			"constant": false,
@@ -8021,8 +7992,8 @@
 					"type": "bool"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -10365,6 +10336,25 @@
 	],
 	"CancelOrder": [
 		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_orderIds",
+					"type": "bytes32[]"
+				}
+			],
+			"name": "cancelOrders",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
 			"constant": true,
 			"inputs": [],
 			"name": "orders",
@@ -11204,8 +11194,8 @@
 					"type": "bool"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -11420,6 +11410,49 @@
 			"type": "function"
 		},
 		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_outcomes",
+					"type": "uint256[]"
+				},
+				{
+					"name": "_types",
+					"type": "uint8[]"
+				},
+				{
+					"name": "_attoshareAmounts",
+					"type": "uint256[]"
+				},
+				{
+					"name": "_prices",
+					"type": "uint256[]"
+				},
+				{
+					"name": "_market",
+					"type": "address"
+				},
+				{
+					"name": "_ignoreShares",
+					"type": "bool"
+				},
+				{
+					"name": "_tradeGroupId",
+					"type": "bytes32"
+				}
+			],
+			"name": "publicCreateOrders",
+			"outputs": [
+				{
+					"name": "_orders",
+					"type": "bytes32[]"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
 			"constant": true,
 			"inputs": [],
 			"name": "getInitialized",
@@ -11504,8 +11537,8 @@
 					"type": "uint256"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -13070,8 +13103,8 @@
 					"type": "uint256"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -13144,8 +13177,8 @@
 					"type": "bytes32"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -13213,8 +13246,8 @@
 					"type": "bytes32"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -13260,8 +13293,8 @@
 					"type": "uint256"
 				}
 			],
-			"payable": true,
-			"stateMutability": "payable",
+			"payable": false,
+			"stateMutability": "nonpayable",
 			"type": "function"
 		}
 	]

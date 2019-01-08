@@ -372,7 +372,7 @@ contract FillOrder is Initializable, ReentrancyGuard, IFillOrder {
     }
 
     // CONSIDER: Do we want the API to be in terms of shares as it is now, or would the desired amount of ETH to place be preferable? Would both be useful?
-    function publicFillOrder(bytes32 _orderId, uint256 _amountFillerWants, bytes32 _tradeGroupId, bool _ignoreShares) external payable afterInitialized returns (uint256) {
+    function publicFillOrder(bytes32 _orderId, uint256 _amountFillerWants, bytes32 _tradeGroupId, bool _ignoreShares) external afterInitialized returns (uint256) {
         uint256 _result = this.fillOrder(msg.sender, _orderId, _amountFillerWants, _tradeGroupId, _ignoreShares);
         IMarket _market = orders.getMarket(_orderId);
         _market.assertBalances();

@@ -128,12 +128,15 @@ export class TestFixture {
         }
         const ethValue = numShares.mul(actualPrice);
 
-        const bestPriceAmount = await trade.publicFillBestOrder_(type, marketAddress, outcome, numShares, price, tradeGroupID, new BN(3), false, { attachedEth: ethValue });
+        const cash = new Cash(this.connector, this.accountManager, this.cash.address, TestFixture.GAS_PRICE);
+        await cash.depositEther({ attachedEth: ethValue });
+        const bestPriceAmount = await trade.publicFillBestOrder_(type, marketAddress, outcome, numShares, price, tradeGroupID, new BN(3), false);
         if (bestPriceAmount == new BN(0)) {
             throw new Error("Could not take best Order");
         }
 
-        await trade.publicFillBestOrder(type, marketAddress, outcome, numShares, price, tradeGroupID, new BN(3), false, { attachedEth: ethValue });
+        await cash.depositEther({ attachedEth: ethValue });
+        await trade.publicFillBestOrder(type, marketAddress, outcome, numShares, price, tradeGroupID, new BN(3), false);
         return;
     }
 

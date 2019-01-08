@@ -59,7 +59,7 @@ contract Market is ITyped, Initializable, Ownable, IMarket {
 
     IAugur public augur;
 
-    function initialize(IAugur _augur, IUniverse _universe, uint256 _endTime, uint256 _feePerEthInAttoEth, address _designatedReporterAddress, address _creator, uint256 _numOutcomes, uint256 _numTicks) public payable beforeInitialized returns (bool _success) {
+    function initialize(IAugur _augur, IUniverse _universe, uint256 _endTime, uint256 _feePerEthInAttoEth, address _designatedReporterAddress, address _creator, uint256 _numOutcomes, uint256 _numTicks) public beforeInitialized returns (bool _success) {
         endInitialization();
         augur = _augur;
         _numOutcomes += 1; // The INVALID outcome is always first
