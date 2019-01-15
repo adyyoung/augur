@@ -122,7 +122,7 @@
     "css-loader": "1.0.1",
     "cssnano": "4.1.7",
     "derequire": "2.0.6",
-    "enzyme": "3.7.0",
+    "enzyme": "3.8.0",
     "enzyme-adapter-react-16": "1.7.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint": "5.10.0",
